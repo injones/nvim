@@ -6,12 +6,13 @@ return {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"Issafalcon/neotest-dotnet",
+		"nvim-neotest/neotest-python",
 	},
-	opts = {
-		adapters = {
-			["neotest-dotnet"] = {
-				-- Here we can set options for neotest-dotnet
+	config = function()
+		require("neotest").setup({
+			adapters = {
+				require("neotest-dotnet"),
 			},
-		},
-	},
+		})
+	end,
 }
