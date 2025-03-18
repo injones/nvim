@@ -12,8 +12,8 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
-	    { "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "Hoffs/omnisharp-extended-lsp.nvim", lazy = true },
 	},
 
 	config = function()
@@ -130,14 +130,14 @@ return {
 					end, "[T]oggle Inlay [H]ints")
 				end
 
-                -- setup compiler config for omnisharp
-                -- https://github.com/Hoffs/omnisharp-extended-lsp.nvim/issues/42#issuecomment-2480414792
-                if client and client.name == "omnisharp" then
-                    map('gd', require('omnisharp_extended').lsp_definition, '[G]oto [D]efinition')
-                    map('gr', require('omnisharp_extended').lsp_references, '[G]oto [R]eferences')
-                    map('gI', require('omnisharp_extended').lsp_implementation, '[G]oto [I]mplementation')
-                    map('<leader>D', require('omnisharp_extended').lsp_type_definition, 'Type [D]efinition')
-                end
+				-- setup compiler config for omnisharp
+				-- https://github.com/Hoffs/omnisharp-extended-lsp.nvim/issues/42#issuecomment-2480414792
+				if client and client.name == "omnisharp" then
+					map("gd", require("omnisharp_extended").lsp_definition, "[G]oto [D]efinition")
+					map("gr", require("omnisharp_extended").lsp_references, "[G]oto [R]eferences")
+					map("gI", require("omnisharp_extended").lsp_implementation, "[G]oto [I]mplementation")
+					map("<leader>D", require("omnisharp_extended").lsp_type_definition, "Type [D]efinition")
+				end
 			end,
 		})
 
@@ -152,117 +152,117 @@ return {
 			cmp_lsp.default_capabilities()
 		)
 
-        local servers = {
-            -- clangd = {},
-            -- gopls = {},
-            -- pyright = {},
-            -- rust_analyzer = {},
-            -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-            --
-            -- Some languages (like typescript) have entire language plugins that can be useful:
-            --    https://github.com/pmizio/typescript-tools.nvim
-            --
-            -- But for many setups, the LSP (`ts_ls`) will work just fine
-            -- ts_ls = {},
-            --
+		local servers = {
+			-- clangd = {},
+			-- gopls = {},
+			-- pyright = {},
+			-- rust_analyzer = {},
+			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+			--
+			-- Some languages (like typescript) have entire language plugins that can be useful:
+			--    https://github.com/pmizio/typescript-tools.nvim
+			--
+			-- But for many setups, the LSP (`ts_ls`) will work just fine
+			-- ts_ls = {},
+			--
 
-            lua_ls = {
-              -- cmd = { ... },
-              -- filetypes = { ... },
-              -- capabilities = {},
-              settings = {
-                Lua = {
-                  completion = {
-                    callSnippet = 'Replace',
-                  },
-                  -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                  -- diagnostics = { disable = { 'missing-fields' } },
-                },
-              },
-            },
+			lua_ls = {
+				-- cmd = { ... },
+				-- filetypes = { ... },
+				-- capabilities = {},
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+						-- diagnostics = { disable = { 'missing-fields' } },
+					},
+				},
+			},
 
-            omnisharp = {
-			    --cmd = { "dotnet", "/path/to/omni/OmniSharp.dll" },
-                -- The following doesn't work for some reason
-                handlers = {
-                    ["textDocument/definition"] = function(...)
-                        return require("omnisharp_extended").handler(...)
-                    end,
-                },
-                keys = {
-                    {
-                        "gd",
-                        function()
-                            require("omnisharp_extended").telescope_lsp_definitions()
-                        end,
-                        noremap = true,
-                        desc = "Goto Definition",
-                    },
-                },
-                --
-                enable_roslyn_analyzers = true,
-                organize_imports_on_format = true,
-                enable_import_completion = true,
-                settings = {
-                    FormattingOptions = {
-                        -- Enables support for reading code style, naming convention and analyzer
-                        -- settings from .editorconfig.
-                        EnableEditorConfigSupport = true,
-                        -- Specifies whether 'using' directives should be grouped and sorted during
-                        -- document formatting.
-                        OrganizeImports = true,
-                    },
-                    MsBuild = {
-                        -- If true, MSBuild project system will only load projects for files that
-                        -- were opened in the editor. This setting is useful for big C# codebases
-                        -- and allows for faster initialization of code navigation features only
-                        -- for projects that are relevant to code that is being edited. With this
-                        -- setting enabled OmniSharp may load fewer projects and may thus display
-                        -- incomplete reference lists for symbols.
-                        LoadProjectsOnDemand = nil,
-                    },
-                    RoslynExtensionsOptions = {
-                        -- Enables support for roslyn analyzers, code fixes and rulesets.
-                        EnableAnalyzersSupport = true,
-                        -- Enables support for showing unimported types and unimported extension
-                        -- methods in completion lists. When committed, the appropriate using
-                        -- directive will be added at the top of the current file. This option can
-                        -- have a negative impact on initial completion responsiveness,
-                        -- particularly for the first few completion sessions after opening a
-                        -- solution.
-                        EnableImportCompletion = nil,
-                        -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
-                        -- true
-                        AnalyzeOpenDocumentsOnly = nil,
-                    },
-                    Sdk = {
-                        -- Specifies whether to include preview versions of the .NET SDK when
-                        -- determining which version to use for project loading.
-                        IncludePrereleases = true,
-                    },
-                }
-            }
-          }
+			omnisharp = {
+				--cmd = { "dotnet", "/path/to/omni/OmniSharp.dll" },
+				-- The following doesn't work for some reason
+				handlers = {
+					["textDocument/definition"] = function(...)
+						return require("omnisharp_extended").handler(...)
+					end,
+				},
+				keys = {
+					{
+						"gd",
+						function()
+							require("omnisharp_extended").telescope_lsp_definitions()
+						end,
+						noremap = true,
+						desc = "Goto Definition",
+					},
+				},
+				--
+				enable_roslyn_analyzers = true,
+				organize_imports_on_format = true,
+				enable_import_completion = true,
+				settings = {
+					FormattingOptions = {
+						-- Enables support for reading code style, naming convention and analyzer
+						-- settings from .editorconfig.
+						EnableEditorConfigSupport = true,
+						-- Specifies whether 'using' directives should be grouped and sorted during
+						-- document formatting.
+						OrganizeImports = true,
+					},
+					MsBuild = {
+						-- If true, MSBuild project system will only load projects for files that
+						-- were opened in the editor. This setting is useful for big C# codebases
+						-- and allows for faster initialization of code navigation features only
+						-- for projects that are relevant to code that is being edited. With this
+						-- setting enabled OmniSharp may load fewer projects and may thus display
+						-- incomplete reference lists for symbols.
+						LoadProjectsOnDemand = nil,
+					},
+					RoslynExtensionsOptions = {
+						-- Enables support for roslyn analyzers, code fixes and rulesets.
+						EnableAnalyzersSupport = true,
+						-- Enables support for showing unimported types and unimported extension
+						-- methods in completion lists. When committed, the appropriate using
+						-- directive will be added at the top of the current file. This option can
+						-- have a negative impact on initial completion responsiveness,
+						-- particularly for the first few completion sessions after opening a
+						-- solution.
+						EnableImportCompletion = nil,
+						-- Only run analyzers against open files when 'enableRoslynAnalyzers' is
+						-- true
+						AnalyzeOpenDocumentsOnly = nil,
+					},
+					Sdk = {
+						-- Specifies whether to include preview versions of the .NET SDK when
+						-- determining which version to use for project loading.
+						IncludePrereleases = true,
+					},
+				},
+			},
+		}
 
-        local ensure_installed = vim.tbl_keys(servers or {})
-          vim.list_extend(ensure_installed, {
-            'stylua', -- Used to format Lua code
-          })
-          require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+		local ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(ensure_installed, {
+			"stylua", -- Used to format Lua code
+		})
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 		require("fidget").setup({})
 		require("mason").setup()
 		require("mason-lspconfig").setup({
 			ensure_installed = {},
 			handlers = {
-              function(server_name)
-                local server = servers[server_name] or {}
-                -- This handles overriding only values explicitly passed
-                -- by the server configuration above. Useful when disabling
-                -- certain features of an LSP (for example, turning off formatting for ts_ls)
-                server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                require('lspconfig')[server_name].setup(server)
-              end,
-            },
+				function(server_name)
+					local server = servers[server_name] or {}
+					-- This handles overriding only values explicitly passed
+					-- by the server configuration above. Useful when disabling
+					-- certain features of an LSP (for example, turning off formatting for ts_ls)
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					require("lspconfig")[server_name].setup(server)
+				end,
+			},
 		})
 
 		cmp.setup({
