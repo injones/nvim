@@ -22,7 +22,7 @@ return {
 		vim.keymap.set("n", "<leader>z", function()
 			require("zen-mode").toggle({
 				window = {
-					width = 90,
+					width = 120,
 					backdrop = 0.75,
 				},
 				plugins = Plugins,
