@@ -62,3 +62,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- omnisharp is very noisy!!!
+-- Convert to block scoped namespace
+-- Convert to block scoped namespace!!
+-- CONVERT TO BLOCK SCOPED NAMESPACE!!
+-- https://github.com/WhoIsSethDaniel/toggle-lsp-diagnostics.nvim?tab=readme-ov-file#archived
+vim.keymap.set("n", "<leader>td", function()
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { silent = true, noremap = true })
